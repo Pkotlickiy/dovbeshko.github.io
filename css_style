@@ -1,4 +1,4 @@
-/* Общие стили */
+/* Общие настройки */
 * {
     margin: 0;
     padding: 0;
@@ -6,27 +6,30 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
+    background-color: #F4F4F4; /* Светлый фон */
+    color: #E0E0E0; /* Цвет текста */
     line-height: 1.6;
-    background-color: #f4f4f4;
-    color: #333;
 }
 
 .container {
     width: 80%;
+    max-width: 1200px;
     margin: auto;
     overflow: hidden;
 }
 
 /* Шапка */
 header {
-    background: #333;
-    color: #fff;
+    background: #0A1A2F; /* Темно-синий */
+    color: #FFD700; /* Золотой */
     padding: 1rem 0;
 }
 
 header h1 {
     float: left;
+    font-size: 1.8rem;
+    font-weight: bold;
 }
 
 header nav {
@@ -43,46 +46,59 @@ header nav ul li {
 }
 
 header nav ul li a {
-    color: #fff;
+    color: #FFD700; /* Золотой */
     text-decoration: none;
+    font-weight: bold;
+}
+
+header nav ul li a:hover {
+    color: #FFC107; /* Яркий золотой при наведении */
 }
 
 /* Главная секция */
 .hero {
-    background: url('lawyer.jpg') no-repeat center center/cover;
-    color: #fff;
+    background: linear-gradient(to bottom, #0A1A2F, #123C69); /* Градиент темно-синего */
+    color: #FFD700; /* Золотой */
     text-align: center;
     padding: 100px 0;
 }
 
 .hero h2 {
     font-size: 2.5rem;
+    font-weight: bold;
 }
 
 .hero p {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     margin: 1rem 0;
 }
 
 .btn {
     display: inline-block;
     padding: 10px 20px;
-    background: #333;
-    color: #fff;
+    background: #FFD700; /* Золотой */
+    color: #0A1A2F; /* Темно-синий */
     text-decoration: none;
     border-radius: 5px;
+    font-weight: bold;
+}
+
+.btn:hover {
+    background: #FFC107; /* Яркий золотой при наведении */
 }
 
 /* Обо мне */
-.about {
+.about, .services, .contact {
+    background: #FFFFFF; /* Белый фон */
+    color: #333; /* Темный текст */
     padding: 2rem 0;
     text-align: center;
 }
 
-/* Услуги */
-.services {
-    padding: 2rem 0;
-    text-align: center;
+.about h2, .services h2, .contact h2 {
+    color: #0A1A2F; /* Темно-синий */
+    font-size: 2rem;
+    margin-bottom: 1rem;
 }
 
 .services ul {
@@ -92,12 +108,7 @@ header nav ul li a {
 
 .services ul li {
     margin: 10px 0;
-}
-
-/* Контакты */
-.contact {
-    padding: 2rem 0;
-    text-align: center;
+    color: #333; /* Темный текст */
 }
 
 .contact form {
@@ -109,6 +120,7 @@ header nav ul li a {
 .contact label {
     display: block;
     margin: 10px 0 5px;
+    color: #0A1A2F; /* Темно-синий */
 }
 
 .contact input, .contact textarea {
@@ -119,10 +131,29 @@ header nav ul li a {
     border-radius: 5px;
 }
 
+.contact button {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #FFD700; /* Золотой */
+    color: #0A1A2F; /* Темно-синий */
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.contact button:hover {
+    background: #FFC107; /* Яркий золотой при наведении */
+}
+
 /* Подвал */
 footer {
-    background: #333;
-    color: #fff;
+    background: #0A1A2F; /* Темно-синий */
+    color: #FFD700; /* Золотой */
     text-align: center;
     padding: 1rem 0;
+}
+
+footer p {
+    font-size: 0.9rem;
 }
