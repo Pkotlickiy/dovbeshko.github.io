@@ -1,3 +1,9 @@
+// Мобильное меню
+document.querySelector('.mobile-menu').addEventListener('click', function() {
+    const mobileNav = document.querySelector('.mobile-nav');
+    mobileNav.style.display = mobileNav.style.display === 'block' ? 'none' : 'block';
+});
+
 // Слайдер отзывов
 let currentSlide = 0;
 const slides = document.querySelectorAll('.review-card');

@@ -4,17 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Профессиональная юридическая помощь от опытного адвоката. Защита ваших прав и интересов.">
+    <meta property="og:title" content="Адвокат Довбешко Светлана Юрьевна">
+    <meta property="og:description" content="Профессиональная юридическая помощь от опытного адвоката. Защита ваших прав и интересов.">
+    <meta property="og:image" content="lawyer-profile.jpg">
     <title>Адвокат Довбешко Светлана Юрьевна</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- Мобильное меню -->
+    <div class="mobile-menu">
+        <i class="fas fa-bars"></i>
+    </div>
+
     <!-- Шапка сайта -->
     <header>
         <div class="container">
-            <h1>Адвокат Довбешко Светлана Юрьевна</h1>
-            <nav>
+            <div class="logo">
+                <h1>Адвокат Довбешко Светлана Юрьевна</h1>
+            </div>
+            <nav class="desktop-nav">
                 <ul>
                     <li><a href="#home">Главная</a></li>
                     <li><a href="#about">Обо мне</a></li>
@@ -30,76 +40,129 @@
                     <li><a href="#contact">Контакты</a></li>
                 </ul>
             </nav>
+            <nav class="mobile-nav">
+                <ul>
+                    <li><a href="#home">Главная</a></li>
+                    <li><a href="#about">Обо мне</a></li>
+                    <li><a href="#services">Услуги</a></li>
+                    <li><a href="#contact">Контакты</a></li>
+                </ul>
+            </nav>
         </div>
     </header>
 
     <main>
         <!-- Главная страница -->
         <section id="home" class="hero">
-            <div class="container">
-                <h2>Профессиональная юридическая помощь</h2>
-                <p>Защита ваших прав и интересов — мой приоритет.</p>
-                <a href="#contact" class="btn">Связаться со мной</a>
+            <div class="container grid">
+                <div class="hero-content">
+                    <h2>Профессиональная юридическая помощь</h2>
+                    <p>Защита ваших прав и интересов — мой приоритет.</p>
+                    <a href="#consultation" class="btn">Получить консультацию</a>
+                </div>
+                <div class="hero-image">
+                    <img src="lawyer.svg" alt="Юрист" loading="lazy">
+                </div>
+            </div>
+        </section>
+
+        <!-- Счетчик успехов -->
+        <section id="success-counter" class="success-counter">
+            <div class="container grid">
+                <div class="counter-item">
+                    <span class="number">500+</span>
+                    <p>Успешных дел</p>
+                </div>
+                <div class="counter-item">
+                    <span class="number">10+</span>
+                    <p>Лет опыта</p>
+                </div>
+                <div class="counter-item">
+                    <span class="number">95%</span>
+                    <p>Довольных клиентов</p>
+                </div>
             </div>
         </section>
 
         <!-- Почему выбирают нас -->
         <section id="why-us" class="why-us">
-            <div class="container">
-                <h2>Почему выбирают нас?</h2>
-                <div class="features">
-                    <div class="feature">
-                        <i class="fas fa-balance-scale"></i>
-                        <h3>Профессионализм</h3>
-                        <p>Более 10 лет успешной практики.</p>
-                    </div>
-                    <div class="feature">
-                        <i class="fas fa-shield-alt"></i>
-                        <h3>Защита интересов</h3>
-                        <p>Мы защищаем ваши права в любой ситуации.</p>
-                    </div>
-                    <div class="feature">
-                        <i class="fas fa-handshake"></i>
-                        <h3>Индивидуальный подход</h3>
-                        <p>Каждый клиент получает персональное внимание.</p>
-                    </div>
+            <div class="container grid">
+                <div class="feature">
+                    <i class="fas fa-balance-scale"></i>
+                    <h3>Профессионализм</h3>
+                    <p>Более 10 лет успешной практики в различных областях права.</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Защита интересов</h3>
+                    <p>Мы защищаем ваши права в любой ситуации, будь то суд или переговоры.</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-handshake"></i>
+                    <h3>Индивидуальный подход</h3>
+                    <p>Каждый клиент получает персональное внимание и стратегию решения проблемы.</p>
                 </div>
             </div>
         </section>
 
         <!-- Обо мне -->
         <section id="about" class="about">
-            <div class="container">
-                <h2>Обо мне</h2>
-                <p>Я — адвокат с более чем 10-летним опытом работы в различных областях права. Моя цель — предоставить вам качественную юридическую поддержку и защиту в любой ситуации.</p>
+            <div class="container grid">
+                <div class="about-text">
+                    <h2>Обо мне</h2>
+                    <p>Я — адвокат с более чем 10-летним опытом работы в различных областях права. Моя цель — предоставить вам качественную юридическую поддержку и защиту в любой ситуации.</p>
+                    <p>Я специализируюсь на семейном, гражданском, уголовном и бизнес-праве. Мои клиенты всегда остаются довольны результатами сотрудничества.</p>
+                    <a href="#services" class="btn">Узнать больше</a>
+                </div>
+                <div class="about-image">
+                    <img src="lawyer-profile.jpg" alt="Адвокат" loading="lazy">
+                </div>
             </div>
         </section>
 
         <!-- Услуги -->
         <section id="services" class="services">
-            <div class="container">
-                <h2>Мои услуги</h2>
-                <ul>
-                    <li>Семейное право</li>
-                    <li>Гражданское право</li>
-                    <li>Трудовое право</li>
-                    <li>Уголовное право</li>
-                    <li>Бизнес-право</li>
-                </ul>
+            <div class="container grid">
+                <div class="card">
+                    <i class="fas fa-users"></i>
+                    <h3>Семейное право</h3>
+                    <p>Раздел имущества, бракоразводные процессы, споры о детях.</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-gavel"></i>
+                    <h3>Гражданское право</h3>
+                    <p>Споры по договорам, имущественные споры, компенсации.</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-user-shield"></i>
+                    <h3>Уголовное право</h3>
+                    <p>Защита по уголовным делам, представительство в суде.</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-building"></i>
+                    <h3>Бизнес-право</h3>
+                    <p>Регистрация компаний, договоры, налоговые споры.</p>
+                </div>
             </div>
         </section>
 
         <!-- Форма консультации -->
         <section id="consultation" class="consultation">
-            <div class="container">
-                <h2>Получите бесплатную консультацию</h2>
+            <div class="container grid">
                 <form action="/submit-consultation" method="post">
-                    <label for="name">Имя:</label>
-                    <input type="text" id="name" name="name" required>
-                    <label for="phone">Телефон:</label>
-                    <input type="tel" id="phone" name="phone" required>
-                    <label for="message">Ваш вопрос:</label>
-                    <textarea id="message" name="message" required></textarea>
+                    <h2>Получите бесплатную консультацию</h2>
+                    <div class="input-group">
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="name" name="name" placeholder="Ваше имя" required>
+                    </div>
+                    <div class="input-group">
+                        <i class="fas fa-phone"></i>
+                        <input type="tel" id="phone" name="phone" placeholder="Телефон" pattern="+7 ([0-9]{3}) [0-9]{3}-[0-9]{2}-[0-9]{2}" required>
+                    </div>
+                    <div class="input-group">
+                        <i class="fas fa-envelope"></i>
+                        <textarea id="message" name="message" placeholder="Ваш вопрос" required></textarea>
+                    </div>
                     <button type="submit" class="btn">Отправить</button>
                 </form>
             </div>
@@ -107,16 +170,18 @@
 
         <!-- Отзывы -->
         <section id="reviews" class="reviews">
-            <div class="container">
+            <div class="container grid">
                 <h2>Отзывы клиентов</h2>
                 <div class="review-slider">
                     <div class="review-card card active">
+                        <img src="client1.jpg" alt="Клиент 1">
                         <p>"Спасибо за профессиональную помощь! Вы настоящий эксперт!"</p>
-                        <p><strong>Имя Фамилия</strong></p>
+                        <p><strong>Иван Петров</strong></p>
                     </div>
                     <div class="review-card card">
+                        <img src="client2.jpg" alt="Клиент 2">
                         <p>"Я очень доволен результатом. Рекомендую всем!"</p>
-                        <p><strong>Имя Фамилия</strong></p>
+                        <p><strong>Мария Сидорова</strong></p>
                     </div>
                 </div>
                 <button class="prev-btn"><i class="fas fa-chevron-left"></i></button>
@@ -124,36 +189,37 @@
             </div>
         </section>
 
-        <!-- Блог -->
-        <section id="blog" class="blog">
-            <div class="container">
-                <h2>Последние статьи</h2>
-                <div class="blog-posts">
-                    <div class="post card">
-                        <h3>Как защитить свои права в суде</h3>
-                        <p>Подробное описание статьи...</p>
-                        <a href="#" class="btn">Читать далее</a>
-                    </div>
-                    <div class="post card">
-                        <h3>Основные ошибки при составлении договора</h3>
-                        <p>Подробное описание статьи...</p>
-                        <a href="#" class="btn">Читать далее</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
         <!-- Контакты -->
         <section id="contact" class="contact">
-            <div class="container">
+            <div class="container grid">
                 <h2>Свяжитесь со мной</h2>
+                <div class="contact-info">
+                    <div class="info-item">
+                        <i class="fas fa-phone"></i>
+                        <p>+7 (999) 123-45-67</p>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <p>example@example.com</p>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <p>Москва, ул. Ленина, д. 1</p>
+                    </div>
+                </div>
                 <form action="/submit-form" method="post">
-                    <label for="name">Имя:</label>
-                    <input type="text" id="name" name="name" required>
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" required>
-                    <label for="message">Сообщение:</label>
-                    <textarea id="message" name="message" required></textarea>
+                    <div class="input-group">
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="name" name="name" placeholder="Ваше имя" required>
+                    </div>
+                    <div class="input-group">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" id="email" name="email" placeholder="Email" required>
+                    </div>
+                    <div class="input-group">
+                        <i class="fas fa-comment"></i>
+                        <textarea id="message" name="message" placeholder="Сообщение" required></textarea>
+                    </div>
                     <button type="submit" class="btn">Отправить</button>
                 </form>
             </div>
