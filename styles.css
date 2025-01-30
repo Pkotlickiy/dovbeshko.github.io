@@ -157,3 +157,59 @@ footer {
 footer p {
     font-size: 0.9rem;
 }
+
+/* Градиенты и тени для кнопок */
+.btn {
+    background: linear-gradient(to bottom, #FFD700, #FFC107);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    transform: scale(1.05); /* Немного увеличивает элемент */
+}
+
+/* Тени для карточек */
+.card {
+    background: #FFFFFF;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 20px 0;
+}
+/* Стили для отзывов */
+.reviews {
+    background: #F4F4F4;
+    padding: 2rem 0;
+    text-align: center;
+}
+
+.review-slider {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.review-card {
+    width: 45%;
+    text-align: left;
+    padding: 20px;
+}
+/* Стили для блога */
+.blog {
+    background: #FFFFFF;
+    padding: 2rem 0;
+    text-align: center;
+}
+
+.blog-posts {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.post {
+    width: 45%;
+    text-align: left;
+    padding: 20px;
+}
