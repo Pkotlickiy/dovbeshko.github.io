@@ -31,6 +31,12 @@ body {
     }
 }
 
+@media (min-width: 1024px) {
+    .grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
 /* Мобильное меню */
 .mobile-menu {
     display: none;
@@ -181,7 +187,7 @@ header nav ul li:hover .dropdown {
 
 /* Счетчик успехов */
 .success-counter {
-    background: #F5F5F5;
+    background: #FFFFFF;
     padding: 2rem 0;
     text-align: center;
 }
@@ -193,7 +199,7 @@ header nav ul li:hover .dropdown {
 }
 
 .counter-item {
-    background: #FFFFFF;
+    background: #F5F5F5;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -210,6 +216,18 @@ header nav ul li:hover .dropdown {
 .why-us {
     background: #FFFFFF;
     padding: 2rem 0;
+}
+
+.why-us h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+}
+
+.features {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 }
 
 .feature {
@@ -237,14 +255,30 @@ header nav ul li:hover .dropdown {
     margin-bottom: 10px;
 }
 
-/* Разделы */
-.about, .services, .contact, .consultation, .certificates, .blog {
+/* Раздел "Обо мне" */
+.about {
     background: #FFFFFF;
     padding: 2rem 0;
 }
 
+.about h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+}
+
+.about-content {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
 .about-text {
     text-align: left;
+}
+
+.about-text p {
+    margin-bottom: 1rem;
 }
 
 .about-image img {
@@ -254,13 +288,25 @@ header nav ul li:hover .dropdown {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.service-cards {
+/* Сертификаты и награды */
+.certificates {
+    background: #FFFFFF;
+    padding: 2rem 0;
+}
+
+.certificates h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+}
+
+.certificates-grid {
     display: grid;
     gap: 20px;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 }
 
-.card {
+.certificate-item {
     background: #F5F5F5;
     padding: 20px;
     border-radius: 10px;
@@ -269,27 +315,70 @@ header nav ul li:hover .dropdown {
     transition: transform 0.3s ease;
 }
 
-.card:hover {
+.certificate-item:hover {
     transform: translateY(-10px);
 }
 
-.card i {
+.certificate-item img {
+    width: 100%;
+    max-width: 300px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+/* Услуги */
+.services {
+    background: #FFFFFF;
+    padding: 2rem 0;
+}
+
+.services h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+}
+
+.services-grid {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.service-item {
+    background: #F5F5F5;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.service-item:hover {
+    transform: translateY(-10px);
+}
+
+.service-item i {
     font-size: 2rem;
     color: #FFB81C;
     margin-bottom: 10px;
 }
 
-.card h3 {
+.service-item h3 {
     font-family: 'Playfair Display', serif;
     font-size: 1.5rem;
     margin-bottom: 10px;
 }
 
-/* Блог */
+/* Последние статьи */
 .blog {
     background: #FFFFFF;
     padding: 2rem 0;
-    text-align: center;
+}
+
+.blog h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    margin-bottom: 2rem;
 }
 
 .blog-posts {
@@ -332,34 +421,18 @@ header nav ul li:hover .dropdown {
     margin-top: 10px;
 }
 
-/* Сертификаты и награды */
-.certificates {
+/* Отзывы клиентов */
+.reviews {
     background: #FFFFFF;
     padding: 2rem 0;
-    text-align: center;
 }
 
-.certificate-item {
-    background: #F5F5F5;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    transition: transform 0.3s ease;
+.reviews h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    margin-bottom: 2rem;
 }
 
-.certificate-item:hover {
-    transform: translateY(-10px);
-}
-
-.certificate-item img {
-    width: 100%;
-    max-width: 300px;
-    border-radius: 10px;
-    margin-bottom: 10px;
-}
-
-/* Слайдер отзывов */
 .review-slider {
     display: flex;
     overflow: hidden;
@@ -369,6 +442,21 @@ header nav ul li:hover .dropdown {
 .review-card {
     min-width: 100%;
     transition: transform 0.5s ease;
+}
+
+.review-card img {
+    width: 100%;
+    max-width: 100px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.review-card p {
+    margin-bottom: 5px;
+}
+
+.review-card strong {
+    font-weight: bold;
 }
 
 .prev-btn, .next-btn {
@@ -390,29 +478,22 @@ header nav ul li:hover .dropdown {
     right: 10px;
 }
 
-/* Социальные сети */
-.social-media {
-    background: #F5F5F5;
+/* Форма консультации */
+.consultation {
+    background: #FFFFFF;
     padding: 2rem 0;
-    text-align: center;
 }
 
-.social-icons {
-    margin-top: 1rem;
+.consultation h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    margin-bottom: 2rem;
 }
 
-.social-icons a {
-    color: #FFB81C;
-    font-size: 1.5rem;
-    margin: 0 15px;
-    transition: color 0.3s ease;
+.consultation-form {
+    text-align: left;
 }
 
-.social-icons a:hover {
-    color: #FFD700;
-}
-
-/* Формы */
 .input-group {
     position: relative;
     margin-bottom: 15px;
@@ -448,7 +529,74 @@ header nav ul li:hover .dropdown {
     height: 100px;
 }
 
-/* Карта */
+/* Социальные сети */
+.social-media {
+    background: #FFFFFF;
+    padding: 2rem 0;
+}
+
+.social-media h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+}
+
+.social-icons {
+    margin-top: 1rem;
+}
+
+.social-icons a {
+    color: #FFB81C;
+    font-size: 1.5rem;
+    margin: 0 15px;
+    transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: #FFD700;
+}
+
+/* Контакты */
+.contact {
+    background: #FFFFFF;
+    padding: 2rem 0;
+}
+
+.contact h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+}
+
+.contact-info {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.info-item {
+    background: #F5F5F5;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.info-item:hover {
+    transform: translateY(-10px);
+}
+
+.info-item i {
+    font-size: 2rem;
+    color: #FFB81C;
+    margin-bottom: 10px;
+}
+
+.info-item p {
+    margin-bottom: 0;
+}
+
 .map {
     margin-top: 2rem;
     border-radius: 10px;
@@ -542,6 +690,15 @@ footer a:hover {
     .input-group textarea {
         padding: 10px 30px;
     }
+
+    .social-icons a {
+        font-size: 1.2rem;
+        margin: 0 10px;
+    }
+
+    .map iframe {
+        height: 300px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -552,5 +709,14 @@ footer a:hover {
     .btn {
         padding: 10px 20px;
         font-size: 0.9rem;
+    }
+
+    .social-icons a {
+        font-size: 1rem;
+        margin: 0 8px;
+    }
+
+    .map iframe {
+        height: 250px;
     }
 }
