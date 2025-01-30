@@ -6,9 +6,9 @@
 }
 
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #FFFFFF; /* Белый фон */
-    color: #333333; /* Темно-серый текст */
+    font-family: 'Roboto', sans-serif;
+    background-color: #FFFFFF;
+    color: #333333;
     line-height: 1.6;
 }
 
@@ -21,8 +21,8 @@ body {
 
 /* Шапка */
 header {
-    background: #61361B; /* Коричневый */
-    color: #FFB81C; /* Желтый */
+    background: #61361B;
+    color: #FFB81C;
     padding: 1rem 0;
 }
 
@@ -41,24 +41,44 @@ header nav ul {
 }
 
 header nav ul li {
-    display: inline;
+    display: inline-block;
+    position: relative;
     margin-left: 20px;
 }
 
 header nav ul li a {
-    color: #FFB81C; /* Желтый */
+    color: #FFB81C;
     text-decoration: none;
     font-weight: bold;
 }
 
-header nav ul li a:hover {
-    color: #FFD700; /* Яркий желтый при наведении */
+header nav ul li .dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #61361B;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+header nav ul li:hover .dropdown {
+    display: block;
+}
+
+.dropdown li {
+    margin: 5px 0;
+}
+
+.dropdown li a {
+    color: #FFB81C;
+    text-decoration: none;
 }
 
 /* Главная секция */
 .hero {
-    background: #F5F5F5; /* Светло-серый */
-    color: #333333; /* Темно-серый */
+    background: #F5F5F5;
+    color: #333333;
     text-align: center;
     padding: 100px 0;
 }
@@ -73,16 +93,14 @@ header nav ul li a:hover {
     margin: 1rem 0;
 }
 
-/* Кнопки */
 .btn {
     display: inline-block;
     padding: 10px 20px;
     background: linear-gradient(to bottom, #FFD700, #FFC107);
-    color: #61361B; /* Коричневый */
+    color: #61361B;
     text-decoration: none;
     border-radius: 5px;
     font-weight: bold;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
 }
 
@@ -90,18 +108,42 @@ header nav ul li a:hover {
     transform: scale(1.05);
 }
 
-/* Разделы */
-.about, .services, .contact {
-    background: #FFFFFF; /* Белый фон */
-    color: #333; /* Темный текст */
+/* Почему выбирают нас */
+.why-us {
+    background: #F5F5F5;
     padding: 2rem 0;
     text-align: center;
 }
 
-.about h2, .services h2, .contact h2 {
-    color: #61361B; /* Коричневый */
+.features {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.feature {
+    width: 30%;
+    text-align: center;
+    padding: 20px;
+}
+
+.feature i {
     font-size: 2rem;
-    margin-bottom: 1rem;
+    color: #FFB81C;
+    margin-bottom: 10px;
+}
+
+.feature h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+/* Разделы */
+.about, .services, .contact, .consultation {
+    background: #FFFFFF;
+    color: #333;
+    padding: 2rem 0;
+    text-align: center;
 }
 
 .services ul {
@@ -111,22 +153,20 @@ header nav ul li a:hover {
 
 .services ul li {
     margin: 10px 0;
-    color: #333; /* Темный текст */
 }
 
-.contact form {
+.contact form, .consultation form {
     max-width: 600px;
     margin: auto;
     text-align: left;
 }
 
-.contact label {
+.contact label, .consultation label {
     display: block;
     margin: 10px 0 5px;
-    color: #61361B; /* Коричневый */
 }
 
-.contact input, .contact textarea {
+.contact input, .contact textarea, .consultation input, .consultation textarea {
     width: 100%;
     padding: 10px;
     margin-bottom: 10px;
@@ -134,64 +174,58 @@ header nav ul li a:hover {
     border-radius: 5px;
 }
 
-.contact button {
-    display: inline-block;
-    padding: 10px 20px;
-    background: #FFB81C; /* Желтый */
-    color: #61361B; /* Коричневый */
+/* Слайдер отзывов */
+.review-slider {
+    display: flex;
+    overflow: hidden;
+    position: relative;
+}
+
+.review-card {
+    min-width: 100%;
+    transition: transform 0.5s ease;
+}
+
+.prev-btn, .next-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: #FFFFFF;
     border: none;
-    border-radius: 5px;
-    font-weight: bold;
+    padding: 10px;
     cursor: pointer;
 }
 
-.contact button:hover {
-    background: #FFD700; /* Яркий желтый при наведении */
+.prev-btn {
+    left: 10px;
 }
 
-/* Услуги */
-.service-cards {
+.next-btn {
+    right: 10px;
+}
+
+/* Блог */
+.blog-posts {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
 }
 
-.card {
-    background: #FFFFFF;
-    border: 1px solid #E0E0E0;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    width: 30%;
-    padding: 20px;
-    margin: 10px;
+.post {
+    width: 45%;
     text-align: left;
-}
-
-.card h3 {
-    color: #61361B; /* Коричневый */
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
+    padding: 20px;
 }
 
 /* Подвал */
 footer {
-    background: #61361B; /* Коричневый */
-    color: #FFB81C; /* Желтый */
+    background: #61361B;
+    color: #FFB81C;
     text-align: center;
     padding: 1rem 0;
 }
 
 footer p {
     font-size: 0.9rem;
-}
-
-/* Медиа-запросы */
-@media (max-width: 768px) {
-    .service-cards, .review-slider, .blog-posts {
-        flex-direction: column;
-    }
-
-    .card, .review-card, .post {
-        width: 100%;
-    }
 }

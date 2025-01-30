@@ -1,17 +1,23 @@
-document.getElementById('uploadForm').addEventListener('submit', function(event) {
-    const name = document.getElementById('name');
-    const email = document.getElementById('email');
+// Слайдер отзывов
+let currentSlide = 0;
+const slides = document.querySelectorAll('.review-card');
+const totalSlides = slides.length;
 
-    if (!name.value || !email.value) {
-        alert('Пожалуйста, заполните все поля.');
-        event.preventDefault();
-    } else if (!validateEmail(email.value)) {
-        alert('Пожалуйста, введите корректный email.');
-        event.preventDefault();
-    }
+function showSlide(index) {
+    slides.forEach((slide, i) => {
+        slide.style.transform = `translateX(${(i - index) * 100}%)`;
+    });
+}
+
+document.querySelector('.next-btn').addEventListener('click', () => {
+    currentSlide = (currentSlide + 1) % totalSlides;
+    showSlide(currentSlide);
 });
 
-function validateEmail(email) {
-    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return re.test(email);
-}
+document.querySelector('.prev-btn').addEventListener('click', () => {
+    currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+    showSlide(currentSlide);
+});
+
+// Инициализация
+showSlide(currentSlide);

@@ -1,20 +1,14 @@
 <!DOCTYPE html>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <html lang="ru">
-<header>
-    <div class="container">
-        <h1>Логотип</h1>
-        <nav>
-            <ul>
-                <li><a href="#home">Главная</a></li>
-                <li><a href="#about">О нас</a></li>
-                <li><a href="#services">Услуги</a></li>
-                <li><a href="#contact">Контакты</a></li>
-            </ul>
-        </nav>
-    </div>
-</header>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Профессиональная юридическая помощь от опытного адвоката. Защита ваших прав и интересов.">
+    <title>Адвокат Довбешко Светлана Юрьевна</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
 <body>
     <!-- Шапка сайта -->
     <header>
@@ -24,99 +18,155 @@
                 <ul>
                     <li><a href="#home">Главная</a></li>
                     <li><a href="#about">Обо мне</a></li>
-                    <li><a href="#services">Услуги</a></li>
+                    <li>
+                        <a href="#services">Услуги</a>
+                        <ul class="dropdown">
+                            <li><a href="#family-law">Семейное право</a></li>
+                            <li><a href="#civil-law">Гражданское право</a></li>
+                            <li><a href="#criminal-law">Уголовное право</a></li>
+                            <li><a href="#business-law">Бизнес-право</a></li>
+                        </ul>
+                    </li>
                     <li><a href="#contact">Контакты</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <!-- Главная страница -->
-    <section id="home" class="hero">
-        <div class="container">
-            <h2>Профессиональная юридическая помощь</h2>
-            <p>Защита ваших прав и интересов — мой приоритет.</p>
-            <a href="#contact" class="btn">Связаться со мной</a>
-        </div>
-    </section>
-
-    <!-- Обо мне -->
-    <section id="about" class="about">
-        <div class="container">
-            <h2>Обо мне</h2>
-            <p>Я — адвокат с более чем 10-летним опытом работы в различных областях права. Моя цель — предоставить вам качественную юридическую поддержку и защиту в любой ситуации.</p>
-        </div>
-    </section>
-
-    <!-- Услуги -->
-    <section id="services" class="services">
-        <div class="container">
-            <h2>Мои услуги</h2>
-            <ul>
-                <li>Семейное право</li>
-                <li>Гражданское право</li>
-                <li>Трудовое право</li>
-                <li>Уголовное право</li>
-                <li>Бизнес-право</li>
-            </ul>
-        </div>
-    </section>
-
-    <!-- Контакты -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2>Свяжитесь со мной</h2>
-            <form action="#" method="post">
-                <label for="name">Имя:</label>
-                <input type="text" id="name" name="name" required>
-
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
-
-                <label for="message">Сообщение:</label>
-                <textarea id="message" name="message" required></textarea>
-
-                <button type="submit" class="btn">Отправить</button>
-            </form>
-        </div>
-    </section>
-<section id="reviews" class="reviews">
-    <div class="container">
-        <h2>Отзывы клиентов</h2>
-        <div class="review-slider">
-            <div class="review-card card">
-                <p>"Спасибо за профессиональную помощь! Вы настоящий эксперт!"</p>
-                <p><strong>Имя Фамилия</strong></p>
+    <main>
+        <!-- Главная страница -->
+        <section id="home" class="hero">
+            <div class="container">
+                <h2>Профессиональная юридическая помощь</h2>
+                <p>Защита ваших прав и интересов — мой приоритет.</p>
+                <a href="#contact" class="btn">Связаться со мной</a>
             </div>
-            <div class="review-card card">
-                <p>"Я очень доволен результатом. Рекомендую всем!"</p>
-                <p><strong>Имя Фамилия</strong></p>
+        </section>
+
+        <!-- Почему выбирают нас -->
+        <section id="why-us" class="why-us">
+            <div class="container">
+                <h2>Почему выбирают нас?</h2>
+                <div class="features">
+                    <div class="feature">
+                        <i class="fas fa-balance-scale"></i>
+                        <h3>Профессионализм</h3>
+                        <p>Более 10 лет успешной практики.</p>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-shield-alt"></i>
+                        <h3>Защита интересов</h3>
+                        <p>Мы защищаем ваши права в любой ситуации.</p>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-handshake"></i>
+                        <h3>Индивидуальный подход</h3>
+                        <p>Каждый клиент получает персональное внимание.</p>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-</section>
-<section id="blog" class="blog">
-    <div class="container">
-        <h2>Последние статьи</h2>
-        <div class="blog-posts">
-            <div class="post card">
-                <h3>Как защитить свои права в суде</h3>
-                <p>Краткое описание статьи...</p>
-                <a href="#" class="btn">Читать далее</a>
+        </section>
+
+        <!-- Обо мне -->
+        <section id="about" class="about">
+            <div class="container">
+                <h2>Обо мне</h2>
+                <p>Я — адвокат с более чем 10-летним опытом работы в различных областях права. Моя цель — предоставить вам качественную юридическую поддержку и защиту в любой ситуации.</p>
             </div>
-            <div class="post card">
-                <h3>Основные ошибки при составлении договора</h3>
-                <p>Краткое описание статьи...</p>
-                <a href="#" class="btn">Читать далее</a>
+        </section>
+
+        <!-- Услуги -->
+        <section id="services" class="services">
+            <div class="container">
+                <h2>Мои услуги</h2>
+                <ul>
+                    <li>Семейное право</li>
+                    <li>Гражданское право</li>
+                    <li>Трудовое право</li>
+                    <li>Уголовное право</li>
+                    <li>Бизнес-право</li>
+                </ul>
             </div>
-        </div>
-    </div>
-</section>
+        </section>
+
+        <!-- Форма консультации -->
+        <section id="consultation" class="consultation">
+            <div class="container">
+                <h2>Получите бесплатную консультацию</h2>
+                <form action="/submit-consultation" method="post">
+                    <label for="name">Имя:</label>
+                    <input type="text" id="name" name="name" required>
+                    <label for="phone">Телефон:</label>
+                    <input type="tel" id="phone" name="phone" required>
+                    <label for="message">Ваш вопрос:</label>
+                    <textarea id="message" name="message" required></textarea>
+                    <button type="submit" class="btn">Отправить</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Отзывы -->
+        <section id="reviews" class="reviews">
+            <div class="container">
+                <h2>Отзывы клиентов</h2>
+                <div class="review-slider">
+                    <div class="review-card card active">
+                        <p>"Спасибо за профессиональную помощь! Вы настоящий эксперт!"</p>
+                        <p><strong>Имя Фамилия</strong></p>
+                    </div>
+                    <div class="review-card card">
+                        <p>"Я очень доволен результатом. Рекомендую всем!"</p>
+                        <p><strong>Имя Фамилия</strong></p>
+                    </div>
+                </div>
+                <button class="prev-btn"><i class="fas fa-chevron-left"></i></button>
+                <button class="next-btn"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </section>
+
+        <!-- Блог -->
+        <section id="blog" class="blog">
+            <div class="container">
+                <h2>Последние статьи</h2>
+                <div class="blog-posts">
+                    <div class="post card">
+                        <h3>Как защитить свои права в суде</h3>
+                        <p>Подробное описание статьи...</p>
+                        <a href="#" class="btn">Читать далее</a>
+                    </div>
+                    <div class="post card">
+                        <h3>Основные ошибки при составлении договора</h3>
+                        <p>Подробное описание статьи...</p>
+                        <a href="#" class="btn">Читать далее</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Контакты -->
+        <section id="contact" class="contact">
+            <div class="container">
+                <h2>Свяжитесь со мной</h2>
+                <form action="/submit-form" method="post">
+                    <label for="name">Имя:</label>
+                    <input type="text" id="name" name="name" required>
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                    <label for="message">Сообщение:</label>
+                    <textarea id="message" name="message" required></textarea>
+                    <button type="submit" class="btn">Отправить</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
     <!-- Подвал -->
     <footer>
         <div class="container">
-            <p>&copy; 2023 Адвокат Иван Иванов. Все права защищены.</p>
+            <p>&copy; 2023 Адвокат Довбешко Светлана Юрьевна. Все права защищены.</p>
         </div>
     </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
