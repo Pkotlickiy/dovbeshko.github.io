@@ -238,7 +238,7 @@ header nav ul li:hover .dropdown {
 }
 
 /* Разделы */
-.about, .services, .contact, .consultation {
+.about, .services, .contact, .consultation, .certificates, .blog {
     background: #FFFFFF;
     padding: 2rem 0;
 }
@@ -285,6 +285,133 @@ header nav ul li:hover .dropdown {
     margin-bottom: 10px;
 }
 
+/* Блог */
+.blog {
+    background: #FFFFFF;
+    padding: 2rem 0;
+    text-align: center;
+}
+
+.blog-posts {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.post {
+    background: #F5F5F5;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    transition: transform 0.3s ease;
+}
+
+.post:hover {
+    transform: translateY(-10px);
+}
+
+.post img {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.post h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.post p {
+    margin-bottom: 15px;
+}
+
+.post .btn {
+    display: inline-block;
+    margin-top: 10px;
+}
+
+/* Сертификаты и награды */
+.certificates {
+    background: #FFFFFF;
+    padding: 2rem 0;
+    text-align: center;
+}
+
+.certificate-item {
+    background: #F5F5F5;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.certificate-item:hover {
+    transform: translateY(-10px);
+}
+
+.certificate-item img {
+    width: 100%;
+    max-width: 300px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+/* Слайдер отзывов */
+.review-slider {
+    display: flex;
+    overflow: hidden;
+    position: relative;
+}
+
+.review-card {
+    min-width: 100%;
+    transition: transform 0.5s ease;
+}
+
+.prev-btn, .next-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: #FFFFFF;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.prev-btn {
+    left: 10px;
+}
+
+.next-btn {
+    right: 10px;
+}
+
+/* Социальные сети */
+.social-media {
+    background: #F5F5F5;
+    padding: 2rem 0;
+    text-align: center;
+}
+
+.social-icons {
+    margin-top: 1rem;
+}
+
+.social-icons a {
+    color: #FFB81C;
+    font-size: 1.5rem;
+    margin: 0 15px;
+    transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: #FFD700;
+}
+
 /* Формы */
 .input-group {
     position: relative;
@@ -321,35 +448,17 @@ header nav ul li:hover .dropdown {
     height: 100px;
 }
 
-/* Слайдер отзывов */
-.review-slider {
-    display: flex;
+/* Карта */
+.map {
+    margin-top: 2rem;
+    border-radius: 10px;
     overflow: hidden;
-    position: relative;
 }
 
-.review-card {
-    min-width: 100%;
-    transition: transform 0.5s ease;
-}
-
-.prev-btn, .next-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.5);
-    color: #FFFFFF;
+.map iframe {
+    width: 100%;
+    height: 400px;
     border: none;
-    padding: 10px;
-    cursor: pointer;
-}
-
-.prev-btn {
-    left: 10px;
-}
-
-.next-btn {
-    right: 10px;
 }
 
 /* Подвал */
