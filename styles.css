@@ -79,6 +79,35 @@ body {
     .desktop-nav {
         display: none;
     }
+
+    .social-icons a {
+        font-size: 1.2rem;
+        margin: 0 10px;
+    }
+
+    .map iframe {
+        height: 300px;
+    }
+}
+
+@media (max-width: 480px) {
+    header .logo h1 {
+        font-size: 1.5rem;
+    }
+
+    .btn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+
+    .social-icons a {
+        font-size: 1rem;
+        margin: 0 8px;
+    }
+
+    .map iframe {
+        height: 250px;
+    }
 }
 
 /* Шапка */
@@ -543,12 +572,14 @@ header nav ul li:hover .dropdown {
 
 .social-icons {
     margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
 }
 
 .social-icons a {
     color: #FFB81C;
     font-size: 1.5rem;
-    margin: 0 15px;
     transition: color 0.3s ease;
 }
 
@@ -649,104 +680,4 @@ footer a:hover {
 }
 
 .btn:hover {
-    transform: scale(1.05);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-}
-
-/* Административная панель */
-.admin-container {
-    width: 90%;
-    max-width: 1200px;
-    margin: auto;
-    overflow: hidden;
-    padding: 2rem 0;
-}
-
-.admin-links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
-}
-
-.admin-links .btn {
-    width: 200px;
-}
-
-/* Анимации */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.hero-content,
-.feature,
-.card,
-.review-card {
-    animation: fadeIn 0.8s ease-in-out;
-}
-
-/* Медиа-запросы */
-@media (max-width: 768px) {
-    .hero-content h2 {
-        font-size: 2rem;
-    }
-
-    .hero-content p {
-        font-size: 1rem;
-    }
-
-    .grid {
-        grid-template-columns: 1fr;
-    }
-
-    .input-group input,
-    .input-group textarea {
-        padding: 10px 30px;
-    }
-
-    .social-icons a {
-        font-size: 1.2rem;
-        margin: 0 10px;
-    }
-
-    .map iframe {
-        height: 300px;
-    }
-
-    .admin-links {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .admin-links .btn {
-        width: 100%;
-        max-width: 300px;
-    }
-}
-
-@media (max-width: 480px) {
-    header .logo h1 {
-        font-size: 1.5rem;
-    }
-
-    .btn {
-        padding: 10px 20px;
-        font-size: 0.9rem;
-    }
-
-    .social-icons a {
-        font-size: 1rem;
-        margin: 0 8px;
-    }
-
-    .map iframe {
-        height: 250px;
-    }
-}
+    transform: scale
