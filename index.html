@@ -1,3 +1,7 @@
+<?php
+include 'db.php';
+?>
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -113,14 +117,27 @@
             <div class="container">
                 <h2>Обо мне</h2>
                 <div class="about-content grid">
+                    <?php
+                    $result = $conn->query("SELECT * FROM about WHERE id = 1");
+                    if ($result->num_rows > 0) {
+                        $row = $result->fetch_assoc();
+                    ?>
                     <div class="about-text card">
-                        <p>Я — адвокат с более чем 10-летним опытом работы в различных областях права. Моя цель — предоставить вам качественную юридическую поддержку и защиту в любой ситуации.</p>
-                        <p>Я специализируюсь на семейном, гражданском, уголовном и бизнес-праве. Мои клиенты всегда остаются довольны результатами сотрудничества.</p>
+                        <p><?php echo htmlspecialchars($row['text']); ?></p>
                         <a href="#services" class="btn">Узнать больше</a>
                     </div>
                     <div class="about-image card">
-                        <img src="lawyer-profile.jpg" alt="Адвокат" loading="lazy">
+                        <img src="<?php echo htmlspecialchars($row['image']); ?>" alt="Адвокат" loading="lazy">
                     </div>
+                    <?php
+                    } else {
+                    ?>
+                    <div class="about-text card">
+                        <p>Информация о нас скоро будет добавлена.</p>
+                    </div>
+                    <?php
+                    }
+                    ?>
                 </div>
             </div>
         </section>
@@ -130,18 +147,25 @@
             <div class="container">
                 <h2>Сертификаты и награды</h2>
                 <div class="certificates-grid grid">
+                    <?php
+                    $result = $conn->query("SELECT * FROM certificates");
+                    if ($result->num_rows > 0) {
+                        while ($row = $result->fetch_assoc()) {
+                    ?>
                     <div class="certificate-item card">
-                        <img src="certificate1.jpg" alt="Сертификат 1" loading="lazy">
-                        <p>Сертификат о профессиональной компетентности</p>
+                        <img src="<?php echo htmlspecialchars($row['image']); ?>" alt="<?php echo htmlspecialchars($row['title']); ?>" loading="lazy">
+                        <p><?php echo htmlspecialchars($row['description']); ?></p>
                     </div>
+                    <?php
+                        }
+                    } else {
+                    ?>
                     <div class="certificate-item card">
-                        <img src="certificate2.jpg" alt="Сертификат 2" loading="lazy">
-                        <p>Награда за лучшего адвоката года</p>
+                        <p>Сертификаты и награды скоро будут добавлены.</p>
                     </div>
-                    <div class="certificate-item card">
-                        <img src="certificate3.jpg" alt="Сертификат 3" loading="lazy">
-                        <p>Диплом о высшем образовании</p>
-                    </div>
+                    <?php
+                    }
+                    ?>
                 </div>
             </div>
         </section>
@@ -151,26 +175,26 @@
             <div class="container">
                 <h2>Мои услуги</h2>
                 <div class="services-grid grid">
+                    <?php
+                    $result = $conn->query("SELECT * FROM services");
+                    if ($result->num_rows > 0) {
+                        while ($row = $result->fetch_assoc()) {
+                    ?>
                     <div class="service-item card">
-                        <i class="fas fa-users"></i>
-                        <h3>Семейное право</h3>
-                        <p>Раздел имущества, бракоразводные процессы, споры о детях.</p>
+                        <i class="<?php echo htmlspecialchars($row['icon']); ?>"></i>
+                        <h3><?php echo htmlspecialchars($row['title']); ?></h3>
+                        <p><?php echo htmlspecialchars($row['description']); ?></p>
                     </div>
+                    <?php
+                        }
+                    } else {
+                    ?>
                     <div class="service-item card">
-                        <i class="fas fa-gavel"></i>
-                        <h3>Гражданское право</h3>
-                        <p>Споры по договорам, имущественные споры, компенсации.</p>
+                        <p>Услуги скоро будут добавлены.</p>
                     </div>
-                    <div class="service-item card">
-                        <i class="fas fa-user-shield"></i>
-                        <h3>Уголовное право</h3>
-                        <p>Защита по уголовным делам, представительство в суде.</p>
-                    </div>
-                    <div class="service-item card">
-                        <i class="fas fa-building"></i>
-                        <h3>Бизнес-право</h3>
-                        <p>Регистрация компаний, договоры, налоговые споры.</p>
-                    </div>
+                    <?php
+                    }
+                    ?>
                 </div>
             </div>
         </section>
@@ -180,18 +204,28 @@
             <div class="container">
                 <h2>Последние статьи</h2>
                 <div class="blog-posts grid">
+                    <?php
+                    $args = array(
+                        'post_type' => 'post',
+                        'posts_per_page' => 2,
+                    );
+                    $query = new WP_Query($args);
+                    if ($query->have_posts()) :
+                        while ($query->have_posts()) : $query->the_post();
+                    ?>
                     <article class="post card">
-                        <img src="blog1.jpg" alt="Статья 1" loading="lazy">
-                        <h3>Как защитить свои права в суде</h3>
-                        <p>В этой статье мы расскажем, как правильно подготовиться к судебному процессу и выиграть дело.</p>
-                        <a href="#" class="btn">Читать далее</a>
+                        <?php if (has_post_thumbnail()) : ?>
+                            <img src="<?php the_post_thumbnail_url('full'); ?>" alt="<?php the_title_attribute(); ?>" loading="lazy">
+                        <?php endif; ?>
+                        <h3><?php the_title(); ?></h3>
+                        <p><?php the_excerpt(); ?></p>
+                        <a href="<?php the_permalink(); ?>" class="btn">Читать далее</a>
                     </article>
-                    <article class="post card">
-                        <img src="blog2.jpg" alt="Статья 2" loading="lazy">
-                        <h3>Основные ошибки при составлении договора</h3>
-                        <p>Узнайте, какие ошибки чаще всего допускают при составлении договоров, и как их избежать.</p>
-                        <a href="#" class="btn">Читать далее</a>
-                    </article>
+                    <?php endwhile; ?>
+                    <?php wp_reset_postdata(); ?>
+                    <?php else : ?>
+                        <p>Нет статей.</p>
+                    <?php endif; ?>
                 </div>
             </div>
         </section>
@@ -201,16 +235,30 @@
             <div class="container">
                 <h2>Отзывы клиентов</h2>
                 <div class="review-slider grid">
+                    <?php
+                    $result = $conn->query("SELECT * FROM reviews");
+                    $totalSlides = $result->num_rows;
+                    $currentSlide = 0;
+                    if ($totalSlides > 0) {
+                        while ($row = $result->fetch_assoc()) {
+                            $activeClass = ($currentSlide == 0) ? 'active' : '';
+                    ?>
+                    <div class="review-card card <?php echo $activeClass; ?>">
+                        <img src="<?php echo htmlspecialchars($row['image']); ?>" alt="<?php echo htmlspecialchars($row['author']); ?>">
+                        <p><?php echo htmlspecialchars($row['text']); ?></p>
+                        <p><strong><?php echo htmlspecialchars($row['author']); ?></strong></p>
+                    </div>
+                    <?php
+                            $currentSlide++;
+                        }
+                    } else {
+                    ?>
                     <div class="review-card card active">
-                        <img src="client1.jpg" alt="Клиент 1">
-                        <p>"Спасибо за профессиональную помощь! Вы настоящий эксперт!"</p>
-                        <p><strong>Иван Петров</strong></p>
+                        <p>Отзывы клиентов скоро будут добавлены.</p>
                     </div>
-                    <div class="review-card card">
-                        <img src="client2.jpg" alt="Клиент 2">
-                        <p>"Я очень доволен результатом. Рекомендую всем!"</p>
-                        <p><strong>Мария Сидорова</strong></p>
-                    </div>
+                    <?php
+                    }
+                    ?>
                 </div>
                 <button class="prev-btn"><i class="fas fa-chevron-left"></i></button>
                 <button class="next-btn"><i class="fas fa-chevron-right"></i></button>
@@ -257,18 +305,32 @@
             <div class="container">
                 <h2>Свяжитесь со мной</h2>
                 <div class="contact-info grid">
+                    <?php
+                    $result = $conn->query("SELECT * FROM contact WHERE id = 1");
+                    if ($result->num_rows > 0) {
+                        $row = $result->fetch_assoc();
+                    ?>
                     <div class="info-item card">
                         <i class="fas fa-phone"></i>
-                        <p>+7 (999) 123-45-67</p>
+                        <p><?php echo htmlspecialchars($row['phone']); ?></p>
                     </div>
                     <div class="info-item card">
                         <i class="fas fa-envelope"></i>
-                        <p>example@example.com</p>
+                        <p><?php echo htmlspecialchars($row['email']); ?></p>
                     </div>
                     <div class="info-item card">
                         <i class="fas fa-map-marker-alt"></i>
-                        <p>Москва, ул. Ленина, д. 1</p>
+                        <p><?php echo htmlspecialchars($row['address']); ?></p>
                     </div>
+                    <?php
+                    } else {
+                    ?>
+                    <div class="info-item card">
+                        <p>Контактная информация скоро будет добавлена.</p>
+                    </div>
+                    <?php
+                    }
+                    ?>
                 </div>
                 <div class="map card">
                     <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A9a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0u1v2w3x4y5z6&source=constructor" width="100%" height="400" frameborder="0"></iframe>
@@ -280,7 +342,7 @@
     <!-- Подвал -->
     <footer>
         <div class="container">
-            <p>&copy; 2023 Адвокат Довбешко Светлана Юрьевна. Все права защищены.</p>
+            <p>&copy; <?php echo date('Y'); ?> Адвокат Довбешко Светлана Юрьевна. Все права защищены.</p>
         </div>
     </footer>
 
