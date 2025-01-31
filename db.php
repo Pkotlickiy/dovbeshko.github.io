@@ -1,7 +1,7 @@
 <?php
-$servername = "localhost";
-$username = "root"; // Имя пользователя базы данных
-$password = ""; // Пароль базы данных
+$servername = "server39.hosting.reg.ru";
+$username = "u2995143_root"; // Имя пользователя базы данных
+$password = "Pasha2te2u"; // Пароль базы данных
 $dbname = "lawyer_db";
 
 // Создаем подключение
