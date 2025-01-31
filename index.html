@@ -42,6 +42,7 @@ include 'db.php';
                         </ul>
                     </li>
                     <li><a href="#contact">Контакты</a></li>
+                    <li><a href="admin/login.php" class="btn">Админ панель</a></li>
                 </ul>
             </nav>
             <nav class="mobile-nav">
@@ -50,6 +51,7 @@ include 'db.php';
                     <li><a href="#about">Обо мне</a></li>
                     <li><a href="#services">Услуги</a></li>
                     <li><a href="#contact">Контакты</a></li>
+                    <li><a href="admin/login.php" class="btn">Админ панель</a></li>
                 </ul>
             </nav>
         </div>
@@ -218,135 +220,3 @@ include 'db.php';
                             <img src="<?php the_post_thumbnail_url('full'); ?>" alt="<?php the_title_attribute(); ?>" loading="lazy">
                         <?php endif; ?>
                         <h3><?php the_title(); ?></h3>
-                        <p><?php the_excerpt(); ?></p>
-                        <a href="<?php the_permalink(); ?>" class="btn">Читать далее</a>
-                    </article>
-                    <?php endwhile; ?>
-                    <?php wp_reset_postdata(); ?>
-                    <?php else : ?>
-                        <p>Нет статей.</p>
-                    <?php endif; ?>
-                </div>
-            </div>
-        </section>
-
-        <!-- Отзывы клиентов -->
-        <section id="reviews" class="reviews">
-            <div class="container">
-                <h2>Отзывы клиентов</h2>
-                <div class="review-slider grid">
-                    <?php
-                    $result = $conn->query("SELECT * FROM reviews");
-                    $totalSlides = $result->num_rows;
-                    $currentSlide = 0;
-                    if ($totalSlides > 0) {
-                        while ($row = $result->fetch_assoc()) {
-                            $activeClass = ($currentSlide == 0) ? 'active' : '';
-                    ?>
-                    <div class="review-card card <?php echo $activeClass; ?>">
-                        <img src="<?php echo htmlspecialchars($row['image']); ?>" alt="<?php echo htmlspecialchars($row['author']); ?>">
-                        <p><?php echo htmlspecialchars($row['text']); ?></p>
-                        <p><strong><?php echo htmlspecialchars($row['author']); ?></strong></p>
-                    </div>
-                    <?php
-                            $currentSlide++;
-                        }
-                    } else {
-                    ?>
-                    <div class="review-card card active">
-                        <p>Отзывы клиентов скоро будут добавлены.</p>
-                    </div>
-                    <?php
-                    }
-                    ?>
-                </div>
-                <button class="prev-btn"><i class="fas fa-chevron-left"></i></button>
-                <button class="next-btn"><i class="fas fa-chevron-right"></i></button>
-            </div>
-        </section>
-
-        <!-- Форма консультации -->
-        <section id="consultation" class="consultation">
-            <div class="container">
-                <h2>Получите бесплатную консультацию</h2>
-                <form action="/submit-consultation" method="post" class="consultation-form card">
-                    <div class="input-group">
-                        <i class="fas fa-user"></i>
-                        <input type="text" id="name" name="name" placeholder="Ваше имя" required>
-                    </div>
-                    <div class="input-group">
-                        <i class="fas fa-phone"></i>
-                        <input type="tel" id="phone" name="phone" placeholder="Телефон" pattern="+7 ([0-9]{3}) [0-9]{3}-[0-9]{2}-[0-9]{2}" required>
-                    </div>
-                    <div class="input-group">
-                        <i class="fas fa-envelope"></i>
-                        <textarea id="message" name="message" placeholder="Ваш вопрос" required></textarea>
-                    </div>
-                    <button type="submit" class="btn">Отправить</button>
-                </form>
-            </div>
-        </section>
-
-        <!-- Социальные сети -->
-        <section id="social-media" class="social-media">
-            <div class="container">
-                <h2>Свяжитесь со мной в социальных сетях</h2>
-                <div class="social-icons">
-                    <a href="https://vk.com" target="_blank"><i class="fab fa-vk"></i></a>
-                    <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
-                    <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Контакты -->
-        <section id="contact" class="contact">
-            <div class="container">
-                <h2>Свяжитесь со мной</h2>
-                <div class="contact-info grid">
-                    <?php
-                    $result = $conn->query("SELECT * FROM contact WHERE id = 1");
-                    if ($result->num_rows > 0) {
-                        $row = $result->fetch_assoc();
-                    ?>
-                    <div class="info-item card">
-                        <i class="fas fa-phone"></i>
-                        <p><?php echo htmlspecialchars($row['phone']); ?></p>
-                    </div>
-                    <div class="info-item card">
-                        <i class="fas fa-envelope"></i>
-                        <p><?php echo htmlspecialchars($row['email']); ?></p>
-                    </div>
-                    <div class="info-item card">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <p><?php echo htmlspecialchars($row['address']); ?></p>
-                    </div>
-                    <?php
-                    } else {
-                    ?>
-                    <div class="info-item card">
-                        <p>Контактная информация скоро будет добавлена.</p>
-                    </div>
-                    <?php
-                    }
-                    ?>
-                </div>
-                <div class="map card">
-                    <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A9a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0u1v2w3x4y5z6&source=constructor" width="100%" height="400" frameborder="0"></iframe>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Подвал -->
-    <footer>
-        <div class="container">
-            <p>&copy; <?php echo date('Y'); ?> Адвокат Довбешко Светлана Юрьевна. Все права защищены.</p>
-        </div>
-    </footer>
-
-    <script src="https://api-maps.yandex.ru/2.1/?apikey=YOUR_YANDEX_MAPS_API_KEY&lang=ru_RU" type="text/javascript"></script>
-    <script src="script.js"></script>
-</body>
-</html>

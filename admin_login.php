@@ -20,6 +20,11 @@
             </div>
             <button type="submit" class="btn">Войти</button>
         </form>
+        <?php
+        if (isset($_GET['error'])) {
+            echo "<p style='color: red;'>Неверный логин или пароль.</p>";
+        }
+        ?>
     </div>
 </body>
 </html>

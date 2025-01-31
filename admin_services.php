@@ -23,9 +23,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if ($stmt->execute()) {
-        echo "Данные успешно обновлены.";
+        echo "<p style='color: green;'>Данные успешно обновлены.</p>";
     } else {
-        echo "Ошибка при обновлении данных: " . $stmt->error;
+        echo "<p style='color: red;'>Ошибка при обновлении данных: " . $stmt->error . "</p>";
     }
 
     $stmt->close();
@@ -38,9 +38,9 @@ if (isset($_GET['delete_id'])) {
     $stmt->bind_param("i", $delete_id);
 
     if ($stmt->execute()) {
-        echo "Данные успешно удалены.";
+        echo "<p style='color: green;'>Данные успешно удалены.</p>";
     } else {
-        echo "Ошибка при удалении данных: " . $stmt->error;
+        echo "<p style='color: red;'>Ошибка при удалении данных: " . $stmt->error . "</p>";
     }
 
     $stmt->close();

@@ -20,9 +20,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bind_param("sssi", $author, $text, $image, $id);
 
     if ($stmt->execute()) {
-        echo "Данные успешно обновлены.";
+        echo "<p style='color: green;'>Данные успешно обновлены.</p>";
     } else {
-        echo "Ошибка при обновлении данных: " . $stmt->error;
+        echo "<p style='color: red;'>Ошибка при обновлении данных: " . $stmt->error . "</p>";
     }
 
     $stmt->close();
