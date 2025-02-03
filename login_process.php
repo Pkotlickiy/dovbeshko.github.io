@@ -1,29 +1,31 @@
 <?php
 session_start();
+
+// Подключение к базе данных
 include '../db.php';
 
-$username = $_POST['username'];
-$password = $_POST['password'];
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
 
-$sql = "SELECT * FROM users WHERE username = ?";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("s", $username);
-$stmt->execute();
-$result = $stmt->get_result();
+    // Поиск пользователя в базе данных
+    $query = "SELECT * FROM users WHERE username = ? AND password = ?";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param('ss', $username, $password);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
-if ($result->num_rows > 0) {
-    $user = $result->fetch_assoc();
-    if (password_verify($password, $user['password'])) {
+    if ($result->num_rows > 0) {
+        // Пользователь найден, авторизация успешна
         $_SESSION['loggedin'] = true;
         header("Location: dashboard.php");
         exit;
     } else {
+        // Пользователь не найден или неверный пароль
         echo "Неверный логин или пароль.";
     }
-} else {
-    echo "Неверный логин или пароль.";
-}
 
-$stmt->close();
+    $stmt->close();
+}
 $conn->close();
 ?>
