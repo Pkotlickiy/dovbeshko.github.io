@@ -1,0 +1,202 @@
+/* Общие настройки */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    line-height: 1.6;
+    font-size: 16px;
+}
+a {
+    text-decoration: none;
+    color: #333;
+}
+button, .btn {
+    cursor: pointer;
+}
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+    overflow: hidden;
+}
+
+/* Шапка админ-панели */
+.admin-header {
+    background: linear-gradient(to right, #4A2A1E, #61361B);
+    color: #FFB81C;
+    padding: 1rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.admin-header h1 {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+.admin-header .logout {
+    background: #FFB81C;
+    color: #333;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background 0.3s ease;
+}
+.admin-header .logout:hover {
+    background: #FFD700;
+}
+
+/* Боковое меню */
+.sidebar {
+    background: #4A2A1E;
+    color: #FFB81C;
+    width: 250px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    padding-top: 20px;
+    z-index: 1000;
+}
+.sidebar ul {
+    list-style: none;
+}
+.sidebar ul li {
+    margin: 15px 0;
+    padding: 10px 20px;
+    transition: background 0.3s ease;
+}
+.sidebar ul li a {
+    color: #FFB81C;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+.sidebar ul li:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+.sidebar ul li a:hover {
+    color: #FFD700;
+}
+
+/* Основное содержимое */
+.main-content {
+    margin-left: 270px; /* Отступ для бокового меню */
+    padding: 20px;
+    min-height: calc(100vh - 40px);
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+.main-content h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: #4A2A1E;
+}
+
+/* Формы */
+form {
+    margin-top: 20px;
+}
+.input-group {
+    margin-bottom: 15px;
+}
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #4A2A1E;
+}
+.input-group input,
+.input-group textarea,
+.input-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+.input-group input:focus,
+.input-group textarea:focus,
+.input-group select:focus {
+    border-color: #FFB81C;
+    outline: none;
+}
+.input-group textarea {
+    resize: vertical;
+    height: 100px;
+}
+
+/* Кнопки */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background: linear-gradient(to right, #FFB81C, #FFD700);
+    color: #333;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Таблица данных */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+.table th, .table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+.table th {
+    background: #4A2A1E;
+    color: #FFB81C;
+    font-weight: bold;
+}
+.table tr:nth-child(even) {
+    background: #f9f9f9;
+}
+.table tr:hover {
+    background: #f1f1f1;
+}
+
+/* Уведомления */
+.success {
+    background: #d4edda;
+    color: #155724;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+.error {
+    background: #f8d7da;
+    color: #721c24;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+/* Медиа-запросы */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+    .main-content {
+        margin-left: 0;
+        padding: 10px;
+    }
+}
