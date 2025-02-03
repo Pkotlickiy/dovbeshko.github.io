@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html <?php language_attributes(); ?>>
+<html lang="ru">
 <head>
-    <meta charset="<?php bloginfo('charset'); ?>">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="<?php bloginfo('description'); ?>">
-    <meta property="og:title" content="<?php bloginfo('name'); ?>">
-    <meta property="og:description" content="<?php bloginfo('description'); ?>">
-    <meta property="og:image" content="<?php echo get_template_directory_uri(); ?>/images/lawyer-profile.jpg">
-    <title><?php wp_title('|', true, 'right'); bloginfo('name'); ?></title>
-    <?php wp_head(); ?>
+    <meta name="description" content="Профессиональная юридическая помощь от опытного адвоката. Защита ваших прав и интересов.">
+    <meta property="og:title" content="Адвокат Довбешко Светлана Юрьевна">
+    <meta property="og:description" content="Профессиональная юридическая помощь от опытного адвоката. Защита ваших прав и интересов.">
+    <meta property="og:image" content="images/lawyer-profile.jpg">
+    <title>Адвокат Довбешко Светлана Юрьевна</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
-<body <?php body_class(); ?>>
+<body>
     <!-- Мобильное меню -->
     <div class="mobile-menu">
         <i class="fas fa-bars"></i>
@@ -20,8 +20,8 @@
     <header>
         <div class="container">
             <div class="logo">
-                <?php the_custom_logo(); ?>
-                <h1><?php bloginfo('name'); ?></h1>
+                <img src="images/logo.png" alt="Адвокат Довбешко Светлана Юрьевна" loading="lazy">
+                <h1>Адвокат Довбешко Светлана Юрьевна</h1>
             </div>
             <nav class="desktop-nav">
                 <ul>
@@ -51,3 +51,5 @@
             </nav>
         </div>
     </header>
+</body>
+</html>

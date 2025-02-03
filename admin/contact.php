@@ -1,16 +1,23 @@
 <?php
 session_start();
+
+// Проверка авторизации
 if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
     header("Location: login.php");
     exit;
 }
+
+// Подключение к базе данных
 include '../db.php';
 
+// Обработка POST-запроса (обновление)
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $phone = $_POST['phone'];
-    $email = $_POST['email'];
-    $address = $_POST['address'];
+    // Получение данных из формы
+    $phone = trim($_POST['phone']);
+    $email = filter_var(trim($_POST['email']), FILTER_SANITIZE_EMAIL); // Очистка email
+    $address = trim($_POST['address']);
 
+    // Подготовленный запрос для обновления
     $sql = "UPDATE contact SET phone = ?, email = ?, address = ? WHERE id = 1";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("sss", $phone, $email, $address);
@@ -24,8 +31,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->close();
 }
 
+// Получение текущих данных контактов
 $result = $conn->query("SELECT * FROM contact WHERE id = 1");
+
+if ($result->num_rows === 0) {
+    echo "<p style='color: red;'>Контактная информация не найдена.</p>";
+    exit;
+}
+
 $row = $result->fetch_assoc();
+$conn->close();
 ?>
 
 <!DOCTYPE html>
@@ -40,7 +55,9 @@ $row = $result->fetch_assoc();
     <div class="container">
         <h2>Управление "Контакты"</h2>
         <a href="dashboard.php" class="btn">Назад</a>
-        <form action="contact.php" method="post">
+
+        <!-- Форма редактирования -->
+        <form action="contact.php" method="post" class="card">
             <div class="input-group">
                 <i class="fas fa-phone"></i>
                 <input type="text" id="phone" name="phone" placeholder="Телефон" value="<?php echo htmlspecialchars($row['phone']); ?>" required>

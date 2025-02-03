@@ -5,27 +5,38 @@ session_start();
 include '../db.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $username = $_POST['username'];
+    // Получение данных из формы
+    $username = trim($_POST['username']);
     $password = $_POST['password'];
 
     // Поиск пользователя в базе данных
-    $query = "SELECT * FROM users WHERE username = ? AND password = ?";
+    $query = "SELECT * FROM users WHERE username = ?";
     $stmt = $conn->prepare($query);
-    $stmt->bind_param('ss', $username, $password);
+    $stmt->bind_param('s', $username);
     $stmt->execute();
     $result = $stmt->get_result();
 
     if ($result->num_rows > 0) {
-        // Пользователь найден, авторизация успешна
-        $_SESSION['loggedin'] = true;
-        header("Location: dashboard.php");
-        exit;
+        $user = $result->fetch_assoc();
+
+        // Проверка пароля
+        if (password_verify($password, $user['password'])) {
+            // Авторизация успешна
+            $_SESSION['loggedin'] = true;
+            $_SESSION['username'] = $user['username']; // Сохраняем имя пользователя в сессии
+            header("Location: dashboard.php");
+            exit;
+        } else {
+            // Неверный пароль
+            echo "<p style='color: red;'>Неверный логин или пароль.</p>";
+        }
     } else {
-        // Пользователь не найден или неверный пароль
-        echo "Неверный логин или пароль.";
+        // Пользователь не найден
+        echo "<p style='color: red;'>Неверный логин или пароль.</p>";
     }
 
     $stmt->close();
 }
+
 $conn->close();
 ?>

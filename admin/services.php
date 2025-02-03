@@ -1,29 +1,39 @@
 <?php
 session_start();
+
+// Проверка авторизации
 if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
     header("Location: login.php");
     exit;
 }
+
+// Подключение к базе данных
 include '../db.php';
 
+// Обработка POST-запроса (добавление/редактирование)
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $title = $_POST['title'];
-    $description = $_POST['description'];
-    $icon = $_POST['icon'];
+    // Получение данных из формы
+    $title = trim($_POST['title']);
+    $description = trim($_POST['description']);
+    $icon = trim($_POST['icon']);
 
     if (isset($_POST['edit_id'])) {
-        $edit_id = $_POST['edit_id'];
+        // Редактирование существующей услуги
+        $edit_id = intval($_POST['edit_id']); // Защита от некорректных данных
         $sql = "UPDATE services SET title = ?, description = ?, icon = ? WHERE id = ?";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("sssi", $title, $description, $icon, $edit_id);
+        $action_message = "Услуга успешно обновлена.";
     } else {
+        // Добавление новой услуги
         $sql = "INSERT INTO services (title, description, icon) VALUES (?, ?, ?)";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("sss", $title, $description, $icon);
+        $action_message = "Услуга успешно добавлена.";
     }
 
     if ($stmt->execute()) {
-        echo "<p style='color: green;'>Данные успешно обновлены.</p>";
+        echo "<p style='color: green;'>$action_message</p>";
     } else {
         echo "<p style='color: red;'>Ошибка при обновлении данных: " . $stmt->error . "</p>";
     }
@@ -31,14 +41,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->close();
 }
 
+// Обработка GET-запроса (удаление)
 if (isset($_GET['delete_id'])) {
-    $delete_id = $_GET['delete_id'];
+    $delete_id = intval($_GET['delete_id']); // Защита от некорректных данных
     $sql = "DELETE FROM services WHERE id = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $delete_id);
 
     if ($stmt->execute()) {
-        echo "<p style='color: green;'>Данные успешно удалены.</p>";
+        echo "<p style='color: green;'>Услуга успешно удалена.</p>";
     } else {
         echo "<p style='color: red;'>Ошибка при удалении данных: " . $stmt->error . "</p>";
     }
@@ -46,7 +57,9 @@ if (isset($_GET['delete_id'])) {
     $stmt->close();
 }
 
+// Получение всех услуг для отображения
 $result = $conn->query("SELECT * FROM services");
+$conn->close();
 ?>
 
 <!DOCTYPE html>
@@ -61,20 +74,26 @@ $result = $conn->query("SELECT * FROM services");
     <div class="container">
         <h2>Управление "Услуги"</h2>
         <a href="dashboard.php" class="btn">Назад</a>
-        <form action="services.php" method="post">
+
+        <!-- Форма добавления/редактирования -->
+        <form action="services.php" method="post" class="card">
+            <?php if (isset($_POST['edit_id'])) : ?>
+                <input type="hidden" name="edit_id" value="<?php echo htmlspecialchars($_POST['edit_id']); ?>">
+            <?php endif; ?>
+
             <div class="input-group">
                 <i class="fas fa-heading"></i>
-                <input type="text" id="title" name="title" placeholder="Название услуги" required>
+                <input type="text" id="title" name="title" placeholder="Название услуги" value="<?php echo isset($_POST['title']) ? htmlspecialchars($_POST['title']) : ''; ?>" required>
             </div>
             <div class="input-group">
                 <i class="fas fa-align-left"></i>
-                <textarea id="description" name="description" placeholder="Описание услуги" required></textarea>
+                <textarea id="description" name="description" placeholder="Описание услуги" required><?php echo isset($_POST['description']) ? htmlspecialchars($_POST['description']) : ''; ?></textarea>
             </div>
             <div class="input-group">
                 <i class="fas fa-icons"></i>
-                <input type="text" id="icon" name="icon" placeholder="Иконка (например, fas fa-users)" required>
+                <input type="text" id="icon" name="icon" placeholder="Иконка (например, fas fa-users)" value="<?php echo isset($_POST['icon']) ? htmlspecialchars($_POST['icon']) : ''; ?>" required>
             </div>
-            <button type="submit" class="btn">Добавить</button>
+            <button type="submit" class="btn"><?php echo isset($_POST['edit_id']) ? 'Обновить' : 'Добавить'; ?></button>
         </form>
 
         <h3>Существующие услуги</h3>

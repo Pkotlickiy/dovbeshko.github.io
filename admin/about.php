@@ -1,15 +1,21 @@
 <?php
 session_start();
+
+// Проверка авторизации
 if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
     header("Location: login.php");
     exit;
 }
+
+// Подключение к базе данных
 include '../db.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Получение данных из формы
     $text = $_POST['text'];
     $image = $_POST['image'];
 
+    // Подготовленный запрос для обновления данных
     $sql = "UPDATE about SET text = ?, image = ? WHERE id = 1";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("ss", $text, $image);
@@ -23,8 +29,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->close();
 }
 
+// Получение данных для отображения формы
 $result = $conn->query("SELECT * FROM about WHERE id = 1");
 $row = $result->fetch_assoc();
+$conn->close();
 ?>
 
 <!DOCTYPE html>

@@ -5,17 +5,14 @@
     box-sizing: border-box;
 }
 
-html {
-    font-size: 62.5%; /* Базовый размер шрифта для rem */
-}
-
 body {
     font-family: 'Roboto', sans-serif;
     background-color: #f9f9f9;
     color: #333333;
     line-height: 1.6;
-    min-height: 100vh; /* Минимальная высота страницы */
-    scroll-behavior: smooth; /* Плавная прокрутка */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 .admin-container {
@@ -37,7 +34,7 @@ body {
 }
 
 .sidebar h2 {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     font-weight: bold;
     margin-bottom: 20px;
 }
@@ -91,36 +88,54 @@ body {
     padding: 20px;
 }
 
-.dashboard .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
-    align-items: start; /* Выравнивание карточек по верху */
-}
-
-.dashboard .card {
-    background: #FFFFFF;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+.dashboard-content {
     padding: 20px;
-    text-align: center;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Анимация при наведении */
+    background: #f1f1f1;
+    border-radius: 5px;
+    margin-bottom: 20px;
 }
 
-.dashboard .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+.quick-links {
+    background: #FFFFFF;
+    padding: 20px;
+    border-radius: 5px;
 }
 
-.dashboard .card h3 {
-    font-size: 1.6rem;
-    margin-bottom: 10px;
-}
-
-.dashboard .card p {
+.quick-links h2 {
     font-size: 1.8rem;
     font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.quick-link {
+    background: #FFB81C;
+    color: #FFFFFF;
+    padding: 15px;
+    border-radius: 5px;
+    text-align: center;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+}
+
+.quick-link a {
+    color: #FFFFFF;
+    text-decoration: none;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.quick-link a:hover {
+    transform: scale(1.05);
+}
+
+.quick-link i {
+    font-size: 2rem;
 }
 
 /* Футер */
@@ -146,8 +161,16 @@ body {
         font-size: 2rem; /* Уменьшаем размер заголовка */
     }
 
-    .dashboard .card {
-        padding: 15px; /* Уменьшаем отступы в карточках */
+    .dashboard-content {
+        padding: 15px; /* Уменьшаем отступы в контенте */
+    }
+
+    .quick-links {
+        padding: 15px;
+    }
+
+    .quick-link {
+        padding: 10px;
     }
 }
 
@@ -156,7 +179,15 @@ body {
         font-size: 1.6rem; /* Дальнейшее уменьшение заголовка */
     }
 
-    .dashboard .card {
+    .dashboard-content {
         padding: 10px; /* Еще меньше отступов */
+    }
+
+    .quick-links {
+        padding: 10px;
+    }
+
+    .quick-link {
+        padding: 10px;
     }
 }

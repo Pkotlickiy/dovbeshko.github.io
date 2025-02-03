@@ -3,8 +3,14 @@
 include 'db.php';
 
 // Получение данных из базы данных
-$query_stats = "SELECT * FROM stats";
+$query_stats = "SELECT * FROM stats WHERE id = 1"; // Убедитесь, что ID существует
 $result_stats = $conn->query($query_stats);
+
+if ($result_stats->num_rows === 0) {
+    echo "<p style='color: red;'>Статистика не найдена.</p>";
+    exit;
+}
+
 $stats = $result_stats->fetch_assoc();
 
 $query_reviews = "SELECT * FROM reviews";
@@ -12,8 +18,9 @@ $result_reviews = $conn->query($query_reviews);
 
 $query_articles = "SELECT * FROM articles LIMIT 2"; // Ограничение до 2 статей
 $result_articles = $conn->query($query_articles);
-?>
 
+$conn->close();
+?>
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -129,12 +136,16 @@ $result_articles = $conn->query($query_articles);
             <div class="container">
                 <h2>Отзывы клиентов</h2>
                 <div class="review-slider grid">
-                    <?php while ($review = $result_reviews->fetch_assoc()): ?>
-                        <div class="review-card card">
-                            <p>"<?php echo htmlspecialchars($review['text']); ?>"</p>
-                            <p><strong><?php echo htmlspecialchars($review['author']); ?></strong></p>
-                        </div>
-                    <?php endwhile; ?>
+                    <?php if ($result_reviews->num_rows > 0): ?>
+                        <?php while ($review = $result_reviews->fetch_assoc()): ?>
+                            <div class="review-card card">
+                                <p>"<?php echo htmlspecialchars($review['text']); ?>"</p>
+                                <p><strong><?php echo htmlspecialchars($review['author']); ?></strong></p>
+                            </div>
+                        <?php endwhile; ?>
+                    <?php else: ?>
+                        <p>Отзывы пока отсутствуют.</p>
+                    <?php endif; ?>
                 </div>
             </div>
         </section>
@@ -144,14 +155,18 @@ $result_articles = $conn->query($query_articles);
             <div class="container">
                 <h2>Последние статьи</h2>
                 <div class="blog-posts grid">
-                    <?php while ($article = $result_articles->fetch_assoc()): ?>
-                        <article class="post card">
-                            <img src="<?php echo htmlspecialchars($article['image']); ?>" alt="<?php echo htmlspecialchars($article['title']); ?>" loading="lazy">
-                            <h3><?php echo htmlspecialchars($article['title']); ?></h3>
-                            <p><?php echo htmlspecialchars($article['excerpt']); ?></p>
-                            <a href="<?php echo htmlspecialchars($article['link']); ?>" class="btn">Читать далее</a>
-                        </article>
-                    <?php endwhile; ?>
+                    <?php if ($result_articles->num_rows > 0): ?>
+                        <?php while ($article = $result_articles->fetch_assoc()): ?>
+                            <article class="post card">
+                                <img src="<?php echo htmlspecialchars($article['image']); ?>" alt="<?php echo htmlspecialchars($article['title']); ?>" loading="lazy">
+                                <h3><?php echo htmlspecialchars($article['title']); ?></h3>
+                                <p><?php echo htmlspecialchars($article['excerpt']); ?></p>
+                                <a href="<?php echo htmlspecialchars($article['link']); ?>" class="btn">Читать далее</a>
+                            </article>
+                        <?php endwhile; ?>
+                    <?php else: ?>
+                        <p>Статьи пока отсутствуют.</p>
+                    <?php endif; ?>
                 </div>
             </div>
         </section>

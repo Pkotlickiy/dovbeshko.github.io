@@ -1,52 +1,65 @@
 <?php
 session_start();
+
+// Проверка авторизации
 if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
     header("Location: login.php");
     exit;
 }
+
+// Подключение к базе данных
 include '../db.php';
 
+// Обработка POST-запроса (добавление/редактирование)
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $title = $_POST['title'];
-    $description = $_POST['description'];
-    $image = $_POST['image'];
+    // Получение данных из формы
+    $title = trim($_POST['title']);
+    $description = trim($_POST['description']);
+    $image = trim($_POST['image']);
 
     if (isset($_POST['edit_id'])) {
-        $edit_id = $_POST['edit_id'];
+        // Редактирование существующего сертификата
+        $edit_id = intval($_POST['edit_id']); // Защита от некорректных данных
         $sql = "UPDATE certificates SET title = ?, description = ?, image = ? WHERE id = ?";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("sssi", $title, $description, $image, $edit_id);
+        $action_message = "Сертификат успешно обновлен.";
     } else {
+        // Добавление нового сертификата
         $sql = "INSERT INTO certificates (title, description, image) VALUES (?, ?, ?)";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("sss", $title, $description, $image);
+        $action_message = "Сертификат успешно добавлен.";
     }
 
     if ($stmt->execute()) {
-        echo "<p style='color: green;'>Данные успешно обновлены.</p>";
+        echo "<p style='color: green;'>$action_message</p>";
     } else {
-        echo "<p style='color: red;'>Ошибка при обновлении данных: " . $stmt->error . "</p>";
+        echo "<p style='color: red;'>Ошибка: " . $stmt->error . "</p>";
     }
 
     $stmt->close();
 }
 
+// Обработка GET-запроса (удаление)
 if (isset($_GET['delete_id'])) {
-    $delete_id = $_GET['delete_id'];
+    $delete_id = intval($_GET['delete_id']); // Защита от некорректных данных
     $sql = "DELETE FROM certificates WHERE id = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $delete_id);
 
     if ($stmt->execute()) {
-        echo "<p style='color: green;'>Данные успешно удалены.</p>";
+        echo "<p style='color: green;'>Сертификат успешно удален.</p>";
     } else {
-        echo "<p style='color: red;'>Ошибка при удалении данных: " . $stmt->error . "</p>";
+        echo "<p style='color: red;'>Ошибка при удалении: " . $stmt->error . "</p>";
     }
 
     $stmt->close();
 }
 
+// Получение всех сертификатов для отображения
 $result = $conn->query("SELECT * FROM certificates");
+$conn->close();
 ?>
 
 <!DOCTYPE html>
@@ -61,22 +74,30 @@ $result = $conn->query("SELECT * FROM certificates");
     <div class="container">
         <h2>Управление "Сертификаты и награды"</h2>
         <a href="dashboard.php" class="btn">Назад</a>
-        <form action="certificates.php" method="post">
+
+        <!-- Форма добавления/редактирования -->
+        <form action="certificates.php" method="post" class="card">
+            <h3><?php echo isset($_POST['edit_id']) ? 'Редактировать сертификат' : 'Добавить сертификат'; ?></h3>
+            <?php if (isset($_POST['edit_id'])) : ?>
+                <input type="hidden" name="edit_id" value="<?php echo htmlspecialchars($_POST['edit_id']); ?>">
+            <?php endif; ?>
+
             <div class="input-group">
                 <i class="fas fa-certificate"></i>
-                <input type="text" id="title" name="title" placeholder="Название" required>
+                <input type="text" id="title" name="title" placeholder="Название" value="<?php echo isset($_POST['title']) ? htmlspecialchars($_POST['title']) : ''; ?>" required>
             </div>
             <div class="input-group">
                 <i class="fas fa-align-left"></i>
-                <textarea id="description" name="description" placeholder="Описание" required></textarea>
+                <textarea id="description" name="description" placeholder="Описание" required><?php echo isset($_POST['description']) ? htmlspecialchars($_POST['description']) : ''; ?></textarea>
             </div>
             <div class="input-group">
                 <i class="fas fa-image"></i>
-                <input type="text" id="image" name="image" placeholder="URL изображения" required>
+                <input type="text" id="image" name="image" placeholder="URL изображения" value="<?php echo isset($_POST['image']) ? htmlspecialchars($_POST['image']) : ''; ?>" required>
             </div>
-            <button type="submit" class="btn">Добавить</button>
+            <button type="submit" class="btn"><?php echo isset($_POST['edit_id']) ? 'Обновить' : 'Добавить'; ?></button>
         </form>
 
+        <!-- Список существующих сертификатов -->
         <h3>Существующие сертификаты и награды</h3>
         <div class="certificates-grid grid">
             <?php while ($row = $result->fetch_assoc()) : ?>
