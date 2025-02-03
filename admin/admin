@@ -5,11 +5,17 @@
     box-sizing: border-box;
 }
 
+html {
+    font-size: 62.5%; /* Базовый размер шрифта для rem */
+}
+
 body {
     font-family: 'Roboto', sans-serif;
     background-color: #f9f9f9;
     color: #333333;
     line-height: 1.6;
+    min-height: 100vh; /* Минимальная высота страницы */
+    scroll-behavior: smooth; /* Плавная прокрутка */
 }
 
 .admin-container {
@@ -27,10 +33,11 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    overflow-y: auto; /* Прокрутка при переполнении */
 }
 
 .sidebar h2 {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     font-weight: bold;
     margin-bottom: 20px;
 }
@@ -48,6 +55,7 @@ body {
     text-decoration: none;
     font-weight: bold;
     transition: color 0.3s ease;
+    font-size: 1.4rem;
 }
 
 .sidebar ul li a:hover {
@@ -61,6 +69,7 @@ body {
     padding: 20px;
     background-color: #FFFFFF;
     overflow-y: auto;
+    scroll-behavior: smooth; /* Плавная прокрутка */
 }
 
 .header {
@@ -70,10 +79,11 @@ body {
     text-align: center;
     border-radius: 5px;
     margin-bottom: 20px;
+    word-wrap: break-word; /* Предотвращение переполнения текста */
 }
 
 .header h1 {
-    font-size: 2rem;
+    font-size: 2.4rem;
     font-weight: bold;
 }
 
@@ -85,6 +95,7 @@ body {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 20px;
+    align-items: start; /* Выравнивание карточек по верху */
 }
 
 .dashboard .card {
@@ -94,15 +105,21 @@ body {
     padding: 20px;
     text-align: center;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Анимация при наведении */
+}
+
+.dashboard .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
 }
 
 .dashboard .card h3 {
-    font-size: 1.2rem;
+    font-size: 1.6rem;
     margin-bottom: 10px;
 }
 
 .dashboard .card p {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     font-weight: bold;
 }
 
@@ -112,6 +129,7 @@ body {
     padding: 10px;
     background: #f9f9f9;
     border-top: 1px solid #ddd;
+    font-size: 1.4rem;
 }
 
 /* Адаптивность */
@@ -122,5 +140,23 @@ body {
 
     .sidebar {
         display: none; /* Скрываем сайдбар на мобильных устройствах */
+    }
+
+    .header h1 {
+        font-size: 2rem; /* Уменьшаем размер заголовка */
+    }
+
+    .dashboard .card {
+        padding: 15px; /* Уменьшаем отступы в карточках */
+    }
+}
+
+@media (max-width: 480px) {
+    .header h1 {
+        font-size: 1.6rem; /* Дальнейшее уменьшение заголовка */
+    }
+
+    .dashboard .card {
+        padding: 10px; /* Еще меньше отступов */
     }
 }
