@@ -1,16 +1,10 @@
 <?php
-// Подключение к базе данных
-include 'db.php';
+session_start();
+include 'db.php'; // Подключение к базе данных
 
 // Получение данных из базы данных
-$query_stats = "SELECT * FROM stats WHERE id = 1"; // Убедитесь, что ID существует
+$query_stats = "SELECT * FROM stats WHERE id = 1";
 $result_stats = $conn->query($query_stats);
-
-if ($result_stats->num_rows === 0) {
-    echo "<p style='color: red;'>Статистика не найдена.</p>";
-    exit;
-}
-
 $stats = $result_stats->fetch_assoc();
 
 $query_reviews = "SELECT * FROM reviews";
@@ -61,6 +55,9 @@ $conn->close();
                         </ul>
                     </li>
                     <li><a href="#contact">Контакты</a></li>
+                    <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true): ?>
+                        <li><a href="admin/dashboard.php" class="btn">Админ панель</a></li>
+                    <?php endif; ?>
                 </ul>
             </nav>
             <nav class="mobile-nav">
@@ -69,6 +66,9 @@ $conn->close();
                     <li><a href="#about">Обо мне</a></li>
                     <li><a href="#services">Услуги</a></li>
                     <li><a href="#contact">Контакты</a></li>
+                    <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true): ?>
+                        <li><a href="admin/dashboard.php" class="btn">Админ панель</a></li>
+                    <?php endif; ?>
                 </ul>
             </nav>
         </div>
